@@ -29,8 +29,27 @@ while True:
 
     # If hand detected, draw landmarks
     if result.multi_hand_landmarks:
+        # Inside the `if result.multi_hand_landmarks:` block
+# AFTER the draw_landmarks line, add this:
+
         for hand_landmarks in result.multi_hand_landmarks:
             mp_draw.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+
+            # Get frame dimensions
+            h, w, _ = frame.shape
+
+            # Landmark 8 = index fingertip
+            index_tip = hand_landmarks.landmark[8]
+
+            # Convert normalized (0-1) coords to pixel coords
+            cx = int(index_tip.x * w)
+            cy = int(index_tip.y * h)
+
+            # Draw a red dot on the fingertip
+            cv2.circle(frame, (cx, cy), 10, (0, 0, 255), -1)
+
+            # Print to terminal
+            print(f"Index tip: ({cx}, {cy})")
 
     cv2.imshow("Air Canvas - Step 1", frame)
 
