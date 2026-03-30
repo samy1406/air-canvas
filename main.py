@@ -15,6 +15,11 @@ hands = mp_hands.Hands(
 # --- Webcam setup ---
 cap = cv2.VideoCapture(0)
 
+def is_index_up(hand_landmarks):
+    tip = hand_landmarks.landmark[8]   # index tip
+    pip = hand_landmarks.landmark[6]   # index middle joint
+    return tip.y < pip.y
+
 while True:
     ret, frame = cap.read()
     if not ret:
@@ -49,7 +54,14 @@ while True:
             cv2.circle(frame, (cx, cy), 10, (0, 0, 255), -1)
 
             # Print to terminal
-            print(f"Index tip: ({cx}, {cy})")
+            finger_up = is_index_up(hand_landmarks)
+
+            # Show status on screen
+            status = "DRAWING" if finger_up else "PAUSED"
+            color = (0, 255, 0) if finger_up else (0, 0, 255)
+            cv2.putText(frame, status, (10, 50), cv2.FONT_HERSHEY_SIMPLEX, 1.2, color, 3)
+
+            print(f"Index tip: ({cx}, {cy}) | Finger: {status}")
 
     cv2.imshow("Air Canvas - Step 1", frame)
 
