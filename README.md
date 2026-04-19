@@ -57,8 +57,7 @@ Ensure you have Python installed on your system.
 5. **UI Interaction: The system checks if the index finger coordinates intersect with the predefined bounding boxes of the UI elements (Color/Clear buttons) to trigger state changes.
 
 ## 📝 Learning & Challenges
-1. Building this project involved overcoming several technical hurdles related to real-time processing and coordinate geometry.
-2. For a deeper dive into the technical concepts learned and the challenges faced during development, check out the LEARNING.md file.
+Building this project involved overcoming several technical hurdles related to real-time processing and coordinate geometry. For a deeper dive into the technical concepts learned and the challenges faced during development, check out the LEARNING.md file.
 
 ## 🤝 Contributing
 Contributions are always welcome! If you have ideas for adding new features (like gesture-based thickness control, an eraser tool, or integrating a CNN for character recognition), feel free to fork the repository and submit a Pull Request.
